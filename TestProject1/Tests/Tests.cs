@@ -163,7 +163,6 @@ namespace TestProject1.Tests
                 Assert.That(array.Length, Is.GreaterThan(4).And.LessThan(10));
                 Assert.That(array.Length, Is.LessThan(1).Or.GreaterThan(3)); // is greater than 3, true
                 Assert.That(array.Length, Is.Not.EqualTo(7));
-
                 
                 // Directory and File Constraints
                 const string path = "C:"; // guessing at path format
@@ -176,6 +175,14 @@ namespace TestProject1.Tests
                 Assert.That(path, Is.SamePath(@"c:\documents\imp1").IgnoreCase);
                 Assert.That(new DirectoryInfo(path), Is.Empty);
                 
+               
+            }
+        }
+        public class TypeReferenceConstraintsExampleTests
+        {
+            [TestCase]
+            public void When_EmployeeExists_Expect_ReturnTrue()
+            {
                 var emp = new Employee();
                 Assert.That(emp, Is.InstanceOf<IEmployee>());
                 Assert.That(emp, Is.Not.InstanceOf<string>());
@@ -183,8 +190,6 @@ namespace TestProject1.Tests
                 Assert.That(emp, Is.TypeOf<Employee>());
                 
                 Assert.That(emp, Is.AssignableTo<Employee>());
-                
-                
             }
         }
     }
