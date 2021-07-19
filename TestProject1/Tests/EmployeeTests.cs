@@ -5,7 +5,7 @@ namespace TestProject1.Tests
     [TestFixture]
     public class EmployeeTests
     {
-        public virtual Employee CreateEmployee()
+        protected virtual Employee CreateEmployee()
         {
             return new Employee();
         }
@@ -46,12 +46,12 @@ namespace TestProject1.Tests
  
             var result = number.AreAllNumbersEven(numbers);
  
-            Assert.That(result == true);
+            Assert.That(result); // checking for truthy value
         }
     }
     public class ManagerTests : EmployeeTests
     {
-        public override Employee CreateEmployee()
+        protected override Employee CreateEmployee()
         {
             return new Manager();
         }
@@ -59,7 +59,7 @@ namespace TestProject1.Tests
  
     public class VicePresidentTests : EmployeeTests
     {
-        public override Employee CreateEmployee()
+        protected override Employee CreateEmployee()
         {
             return new DeliveryManager();
         }

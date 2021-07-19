@@ -36,7 +36,7 @@ namespace TestProject1.Tests
                 customerOrderService.ApplyDiscount(premiumCustomer, order);
 
                 //Assert
-                Assert.AreEqual(order.Amount, 135);
+                Assert.AreEqual(order.Amount, 150);
             }
         }
     }

@@ -1,12 +1,7 @@
-﻿namespace TestProject1
-{
-    public enum CustomerType
-    {
-        Basic,
-        Premium,
-        SpecialCustomer
-    }
+﻿using System;
 
+namespace TestProject1
+{
     public class Customer
     {
         public int CustomerId { get; set; }
@@ -26,13 +21,18 @@
     {
         public void ApplyDiscount(Customer customer, Order order)
         {
-            if (customer.CustomerType ==  CustomerType.Premium)
+            switch (customer.CustomerType) // Changed from if to switch case 
             {
-                order.Amount = order.Amount - ((order.Amount * 10) / 100);
-            }
-            else if (customer.CustomerType == CustomerType.SpecialCustomer)
-            {
-                order.Amount = order.Amount - ((order.Amount * 20) / 100);
+                case CustomerType.Premium:
+                    order.Amount -= ((order.Amount * 10) / 100); // -= compound assignment applying discount
+                    break;
+                case CustomerType.SpecialCustomer:
+                    order.Amount -= ((order.Amount * 20) / 100);
+                    break;
+                case CustomerType.Basic:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
         }
     }
