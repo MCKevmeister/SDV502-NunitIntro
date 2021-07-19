@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using NUnit.Framework;
 
 namespace TestProject1.Tests
@@ -85,6 +86,51 @@ namespace TestProject1.Tests
                 
                 Assert.That(someString, Does.Match("P*O"));
                 Assert.That(someString, Does.Not.Match("m*n"));
+            }
+        }
+
+        public class CollectionExampleTests
+        {
+            [TestCase]
+            public void When_CollectionIs678910_Expect_ReturnTrue()
+            {
+                var array = new[] { 6, 7, 8 ,9, 10 };
+
+                // Collection Constraints
+                
+                Assert.That(array, Is.All.Not.Null);
+                Assert.That(array, Is.All.GreaterThan(4));
+                Assert.That(array, Is.All.LessThan(13));
+                Assert.That(array, Is.All.InstanceOf<int>());
+                
+                Assert.That(array, Is.Empty); // false
+                Assert.That(array, Is.Not.Empty);
+                
+                Assert.That(array, Has.Exactly(5).Items);
+                Assert.That(array, Is.Unique);
+                Assert.That(array, Contains.Item(8));
+                
+                // Ordering Examples
+                
+                Assert.That(array, Is.Ordered.Ascending);
+                Assert.That(array, Is.Ordered.Descending); // false
+                
+                var employees = new List<Employee>
+                {
+                    new() {Age = 32, Name = "Zoe"}, 
+                    new() {Age = 49, Name = "Mark"}, 
+                    new() {Age = 57, Name = "Bob" }
+                };
+                // Single Property
+                Assert.That(employees, Is.Ordered.Ascending.By("Age")); // true
+                Assert.That(employees, Is.Ordered.Descending.By("Age")); // false
+                
+                //Multiple Properties
+                Assert.That(employees, Is.Ordered.Ascending.By("Age").Then.Descending.By("Name"));
+                
+                int[] numberArray1 = { 1, 2, 3, 4, 5 };
+                int[] numberArray2 = { 3, 4 };
+                Assert.That(numberArray2, Is.SubsetOf(numberArray1));
             }
         }
     }
