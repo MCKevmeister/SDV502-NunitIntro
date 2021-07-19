@@ -21,19 +21,20 @@ namespace TestProject1.Tests
 
             Assert.IsTrue(result);
         }
-        [TestCase(60)]
-        [TestCase(80)]
-        [TestCase(90)]
-        public void When_AgeGreaterAndEqualTo60_Expects_IsSeniorCitizen_ReturnsTrue(int age)
+        
+        [TestCase(29, ExpectedResult = false)]
+        [TestCase(0, ExpectedResult = false)]
+        [TestCase(60, ExpectedResult = true)]
+        [TestCase(80, ExpectedResult = true)]
+        [TestCase(90, ExpectedResult = true)]
+        public bool When_AgeGreaterAndEqualTo60_Expects_IsSeniorCitizen_ReturnsTrue(int age)
         {
             var emp = new Employee {Age = age};
 
             var result = emp.IsSeniorCitizen();
-            
-            Assert.That(result == true);
+
+            return result;
         }
-        
-        
     }
     public class ManagerTests : EmployeeTests
     {
