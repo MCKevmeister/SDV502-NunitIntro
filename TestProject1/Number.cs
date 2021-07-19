@@ -12,10 +12,10 @@ namespace TestProject1
             return numbers.Any(number => number % 2 == 0);
         }
 
-        public static bool IsStringArrayOfEvenNumbers(string[] numbers)
+        public static bool IsStringArrayOfEvenNumbers(int[] numbers)
         {
-            return true; // TODO
-            //string array count lenght % 2 == 0
+            //TODO
+            return true;
         }
     }
 }

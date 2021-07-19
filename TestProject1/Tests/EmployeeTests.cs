@@ -1,5 +1,6 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
+using System.IO;
+using Newtonsoft.Json.Serialization;
 using NUnit.Framework;
 
 namespace TestProject1.Tests
@@ -24,7 +25,7 @@ namespace TestProject1.Tests
 
         [TestCaseSource(typeof(StringArrayTestDataSource))]
         [Order(1)]
-        public void When_StringArrayAreEvenNumbers_Expects_IsStringArrayOfEvenNumbersAsTrue(string[] numbers)
+        public void When_StringArrayAreEvenNumbers_Expects_IsStringArrayOfEvenNumbersAsTrue(int[] numbers)
         {
             var number = new Number();
 
@@ -82,9 +83,10 @@ namespace TestProject1.Tests
         }
 
         [TestCaseSource(typeof(StringArrayTestDataSource))]
-        public void When_StringArrayAreEvenNumber_Expects_IsStringArrayOfEvenNumbersAsTrue(string[] numbers)
+        public void When_StringArrayAreEvenNumber_Expects_IsStringArrayOfEvenNumbersAsTrue(int[] numbers)
         {
             var number = new Number();
+            
             var result = Number.IsStringArrayOfEvenNumbers(numbers);
 
             Assert.That(result);

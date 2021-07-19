@@ -2,22 +2,7 @@
 
 namespace TestProject1
 {
-    public class Customer
-    {
-        public int CustomerId { get; set; }
-        public string CustomerName { get; set; }
-        public CustomerType CustomerType { get; set; }
-    }
-
-    public class Order
-    {
-        public int OrderId { get; set; }
-        public int ProductId { get; set; }
-        public int ProductQuantity { get; set; }
-        public decimal Amount { get; set; }
-    }
-
-    public static class CustomerOrderService
+    public static class Discount
     {
         public static void ApplyDiscount(Customer customer, Order order)
         {
