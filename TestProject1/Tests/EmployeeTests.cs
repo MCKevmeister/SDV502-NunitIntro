@@ -39,6 +39,15 @@ namespace TestProject1.Tests
         public void When_AgeGreaterAndEqualTo60_Expects_IsSeniorCitizen_ReturnsTrue()
         {
         }
+        [TestCase(new int[] { 2, 4, 6 })]
+        public void When_AllNumberAreEven_Expects_AreAllNumbersEvenAsTrue(int[] numbers)
+        {
+            var number = new Number();
+ 
+            var result = number.AreAllNumbersEven(numbers);
+ 
+            Assert.That(result == true);
+        }
     }
     public class ManagerTests : EmployeeTests
     {
