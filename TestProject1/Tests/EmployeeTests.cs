@@ -1,13 +1,35 @@
-﻿using NUnit.Framework;
+﻿using System;
+using System.Collections;
+using NUnit.Framework;
 
 namespace TestProject1.Tests
 {
+    internal class StringArrayTestDataSource : IEnumerable
+    {
+        public IEnumerator GetEnumerator()
+        {
+            yield return new[] {"2", "4", "6"};
+            yield return new[] {"3", "4", "5"};
+            yield return new[] {"6", "8", "10"};
+        }
+    }
+
     [TestFixture]
     public class EmployeeTests
     {
         protected virtual Employee CreateEmployee()
         {
-            return new Employee();
+            return new();
+        }
+
+        [TestCaseSource(typeof(StringArrayTestDataSource))]
+        public void When_StringArrayAreEvenNumbers_Expects_IsStringArrayOfEvenNumbersAsTrue(string[] numbers)
+        {
+            var number = new Number();
+
+            var result = Number.IsStringArrayOfEvenNumbers(numbers);
+
+            Assert.That(result);
         }
 
         [TestCase(Author = "Mark Christison")]
@@ -20,7 +42,7 @@ namespace TestProject1.Tests
 
             Assert.IsTrue(result);
         }
-        
+
         [TestCase(29, ExpectedResult = false, Author = "Mark Christison")]
         [TestCase(0, ExpectedResult = false, Author = "Mark Christison")]
         [TestCase(60, ExpectedResult = true, Author = "Mark Christison")]
@@ -39,16 +61,34 @@ namespace TestProject1.Tests
         public void When_AgeGreaterAndEqualTo60_Expects_IsSeniorCitizen_ReturnsTrue()
         {
         }
-        [TestCase(new int[] { 2, 4, 6 })]
+
+        [TestCase(new[] {2, 4, 6})]
         public void When_AllNumberAreEven_Expects_AreAllNumbersEvenAsTrue(int[] numbers)
         {
             var number = new Number();
- 
-            var result = number.AreAllNumbersEven(numbers);
- 
+
+            var result = Number.AreAllNumbersEven(numbers);
+
             Assert.That(result); // checking for truthy value
         }
+
+        [TestCase(new object[] {"1", "2", "3"}, Ignore = "Code not complete yet")]
+        public void When_AllNumberAreEven_Expects_AreAllNumbersEvenAsTrue(object[] numbers)
+        {
+            //....
+        }
+
+        [TestCaseSource(typeof(StringArrayTestDataSource))]
+        public void When_StringArrayAreEvenNumber_Expects_IsStringArrayOfEvenNumbersAsTrue(string[] numbers)
+        {
+            var number = new Number();
+            var result = Number.IsStringArrayOfEvenNumbers(numbers);
+
+            Assert.That(result);
+        }
+
     }
+
     public class ManagerTests : EmployeeTests
     {
         protected override Employee CreateEmployee()
@@ -56,7 +96,7 @@ namespace TestProject1.Tests
             return new Manager();
         }
     }
- 
+
     public class VicePresidentTests : EmployeeTests
     {
         protected override Employee CreateEmployee()
@@ -64,5 +104,4 @@ namespace TestProject1.Tests
             return new DeliveryManager();
         }
     }
-
 }

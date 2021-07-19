@@ -17,9 +17,9 @@ namespace TestProject1
         public decimal Amount { get; set; }
     }
 
-    public class CustomerOrderService
+    public static class CustomerOrderService
     {
-        public void ApplyDiscount(Customer customer, Order order)
+        public static void ApplyDiscount(Customer customer, Order order)
         {
             switch (customer.CustomerType) // Changed from if to switch case 
             {
