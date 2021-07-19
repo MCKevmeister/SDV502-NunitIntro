@@ -1,5 +1,4 @@
-﻿using System;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace TestProject1.Tests
 {
@@ -28,7 +27,7 @@ namespace TestProject1.Tests
         }
     }
 
-    [TestFixture(CustomerType.Premium, 100.00, TypeArgs = new Type[] {typeof(CustomerType), typeof(double)})]
+    [TestFixture(CustomerType.Premium, 100.00, TypeArgs = new[] {typeof(CustomerType), typeof(double)})]
     public class CustomerOrderServiceTests<T1, T2>
     {
         private T1 customerType;
