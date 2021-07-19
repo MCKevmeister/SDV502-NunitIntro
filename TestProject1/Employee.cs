@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices;
+﻿using System;
+using System.Runtime.InteropServices;
 
 namespace TestProject1
 {
@@ -24,6 +25,8 @@ namespace TestProject1
 
         public bool IsSeniorCitizen()
         {
+            if (Age <= 0) 
+                throw new ArgumentException("Age can not 0.");
             return Age >= 60;
         }
     }

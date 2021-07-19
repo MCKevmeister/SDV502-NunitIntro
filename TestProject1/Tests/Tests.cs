@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using NUnit.Framework;
@@ -190,6 +191,24 @@ namespace TestProject1.Tests
                 Assert.That(emp, Is.TypeOf<Employee>());
                 
                 Assert.That(emp, Is.AssignableTo<Employee>());
+            }
+        }
+        public class ExceptionConstrainsExampleTests
+        {
+            [TestCase]
+            public void When_EmployeeExists_Expect_ReturnTrue()
+            {
+                IEmployee emp = new Employee() {Age = 0};
+                Assert.That(emp, Is.InstanceOf<IEmployee>());
+                Assert.That(emp, Is.Not.InstanceOf<string>());
+                Assert.That(emp, Is.TypeOf<Employee>());
+                Assert.That(emp, Is.AssignableTo<Employee>());
+                
+                Assert.That(emp.IsSeniorCitizen(), Throws.Exception); // bool throws exception?
+                Assert.That(emp.IsSeniorCitizen(), Throws.TypeOf<ArgumentException>());
+                
+                var ex = Assert.Throws<ArgumentException>(() => emp.IsSeniorCitizen());
+                if (ex != null) Assert.That(ex.Message, Is.EqualTo("Age can not 0."));
             }
         }
     }
