@@ -1,5 +1,4 @@
-﻿using Microsoft.VisualStudio.TestPlatform.ObjectModel;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace TestProject1.Tests
 {
@@ -11,7 +10,7 @@ namespace TestProject1.Tests
             return new Employee();
         }
 
-        [TestCase]
+        [TestCase(Author = "Mark Christison")]
         public void When_NameContainsIllegalChars_Expect_ContainsIllegalChars_ReturnsTrue()
         {
             var employee = CreateEmployee();
@@ -22,11 +21,11 @@ namespace TestProject1.Tests
             Assert.IsTrue(result);
         }
         
-        [TestCase(29, ExpectedResult = false)]
-        [TestCase(0, ExpectedResult = false)]
-        [TestCase(60, ExpectedResult = true)]
-        [TestCase(80, ExpectedResult = true)]
-        [TestCase(90, ExpectedResult = true)]
+        [TestCase(29, ExpectedResult = false, Author = "Mark Christison")]
+        [TestCase(0, ExpectedResult = false, Author = "Mark Christison")]
+        [TestCase(60, ExpectedResult = true, Author = "Mark Christison")]
+        [TestCase(80, ExpectedResult = true, Author = "Mark Christison")]
+        [TestCase(90, ExpectedResult = true, Author = "Mark Christison")]
         public bool When_AgeGreaterAndEqualTo60_Expects_IsSeniorCitizen_ReturnsTrue(int age)
         {
             var emp = new Employee {Age = age};
@@ -34,6 +33,11 @@ namespace TestProject1.Tests
             var result = emp.IsSeniorCitizen();
 
             return result;
+        }
+
+        [TestCase(Ignore = "Code not complete yet")]
+        public void When_AgeGreaterAndEqualTo60_Expects_IsSeniorCitizen_ReturnsTrue()
+        {
         }
     }
     public class ManagerTests : EmployeeTests
