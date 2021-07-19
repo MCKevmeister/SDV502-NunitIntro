@@ -2,7 +2,16 @@
 
 namespace TestProject1
 {
-    public class Employee
+    public interface IEmployee
+    {
+        int Id { get; set; }
+        string Name { get; set; }
+        int Age { get; set; }
+        bool ContainsIllegalChars();
+        bool IsSeniorCitizen();
+    }
+
+    public class Employee : IEmployee
     {
         public int Id { get; set; }
         public string Name { get; set; }
