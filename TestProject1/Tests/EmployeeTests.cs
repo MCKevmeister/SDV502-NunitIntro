@@ -23,6 +23,7 @@ namespace TestProject1.Tests
         }
 
         [TestCaseSource(typeof(StringArrayTestDataSource))]
+        [Order(1)]
         public void When_StringArrayAreEvenNumbers_Expects_IsStringArrayOfEvenNumbersAsTrue(string[] numbers)
         {
             var number = new Number();
@@ -33,6 +34,7 @@ namespace TestProject1.Tests
         }
 
         [TestCase(Author = "Mark Christison")]
+        [Order(2)]
         public void When_NameContainsIllegalChars_Expect_ContainsIllegalChars_ReturnsTrue()
         {
             var employee = CreateEmployee();
@@ -48,6 +50,7 @@ namespace TestProject1.Tests
         [TestCase(60, ExpectedResult = true, Author = "Mark Christison")]
         [TestCase(80, ExpectedResult = true, Author = "Mark Christison")]
         [TestCase(90, ExpectedResult = true, Author = "Mark Christison")]
+        [Order(4)]
         public bool When_AgeGreaterAndEqualTo60_Expects_IsSeniorCitizen_ReturnsTrue(int age)
         {
             var emp = new Employee {Age = age};
