@@ -1,12 +1,21 @@
-﻿namespace TestProject1
+﻿using System.Collections.Generic;
+using System.Linq;
+
+namespace TestProject1
 {
     public class Number
     {
         public int Integer { get; set; }
 
-        public bool AreAllNumbersEven(int[] numbers)
+        public static bool AreAllNumbersEven(IEnumerable<int> numbers)
         {
-            return true;
+            return numbers.Any(number => number % 2 == 0);
+        }
+
+        public static bool IsStringArrayOfEvenNumbers(string[] numbers)
+        {
+            return true; // TODO
+            //string array count lenght % 2 == 0
         }
     }
 }

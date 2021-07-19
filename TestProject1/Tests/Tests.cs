@@ -30,10 +30,10 @@ namespace TestProject1.Tests
                     Amount = 150
                 };
 
-                var customerOrderService = new CustomerOrderService();
+                // var customerOrderService = new CustomerOrderService(); never used?
 
                 //Act
-                customerOrderService.ApplyDiscount(premiumCustomer, order);
+                CustomerOrderService.ApplyDiscount(premiumCustomer, order);
 
                 //Assert
                 Assert.AreEqual(order.Amount, 150);
