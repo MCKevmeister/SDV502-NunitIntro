@@ -62,7 +62,6 @@ namespace TestProject1.Tests
                 Assert.That(createdNumber.Integer, Is.InRange(5, 10)); // True
             }
         }
-
         public class StringExampleTests
         {
             [TestCase]
@@ -130,10 +129,6 @@ namespace TestProject1.Tests
 
                 //Multiple Properties
                 Assert.That(employees, Is.Ordered.Ascending.By("Age").Then.Descending.By("Name"));
-
-                
-
-                ;
             }
         }
 
